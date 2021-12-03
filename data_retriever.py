@@ -1,8 +1,9 @@
 import urllib.request
 import json
+import streamkit as st
 
 # Constants for the API calls (used in URL header field)
-API_KEY = ""
+API_KEY = st.secrets["API_KEY"]
 HEADER_VAL = "x-messari-api-key"
 
 

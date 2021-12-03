@@ -1,4 +1,9 @@
 import streamlit as st
+import data_retriever as dr
+
+# Retrieve currencies and make a list
+currencies = dr.retrieve_currencies()
+currency_list = list(currencies.values())
 
 # Header content for the webpage
 st.header("Amazing Python Project")
@@ -10,7 +15,7 @@ st.subheader("Created by amazing people")
 # Adding currency selector to sidebar
 with st.sidebar:
     st.title("Options")
-    st.selectbox("Select a cryptocurrency", ["test", "two"])
+    st.selectbox("Select a cryptocurrency", currency_list)
     st.number_input("Enter amount of runs", 1, 1000)
 
 # Footer content for the webpage
