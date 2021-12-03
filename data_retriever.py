@@ -1,6 +1,6 @@
 import urllib.request
 import json
-import streamkit as st
+import streamlit as st
 
 # Constants for the API calls (used in URL header field)
 API_KEY = st.secrets["API_KEY"]
