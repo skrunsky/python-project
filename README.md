@@ -9,7 +9,7 @@ This project was developed and created by:
 - Gianluca Pecoraro
 - Enrique Fabio Ferrari-Pedruzzi
 
-As a project for the course Introduction to Programming at [Nova School of Businesss and Economics]("https://novasbe.pt/").
+As a project for the course Introduction to Programming at [Nova School of Business and Economics]("https://novasbe.pt/").
 
 ## How to run 
 
