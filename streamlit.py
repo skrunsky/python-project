@@ -23,7 +23,7 @@ st.set_page_config(
 )
 
 # Header content for the webpage
-st.header("Amazing Python Project")
+st.header("Even more Amazing Python Project")
 st.subheader("Created by amazing people")
 
 # Introduction to the product and how to use it
