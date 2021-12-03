@@ -2,7 +2,7 @@ import urllib.request
 import json
 
 # Constants for the API calls (used in URL header field)
-API_KEY = "4863dee5-509f-4b1e-978e-14656175524f"
+API_KEY = ""
 HEADER_VAL = "x-messari-api-key"
 
 
