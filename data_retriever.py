@@ -1,6 +1,8 @@
 import urllib.request
 import json
 import streamlit as st
+import numpy as np
+import pandas as pd
 
 # Constants for the API calls (used in URL header field)
 API_KEY = st.secrets["API_KEY"]
@@ -11,20 +13,21 @@ def retrieve_currencies():
     # Placeholder dictionary to populate with data
     all_currencies = {}
     # Permanent URL for the API call to retrieve currencies
-    request_url = "https://data.messari.io/api/v2/assets?fields=slug,name&limit=100"
+    # Defaulting to doing the 500 most popular currencies
+    request_url = "https://data.messari.io/api/v1/assets?limit=500&fields=id,slug,symbol,metrics/market_data/price_usd"
     # Retrieve parsed JSON data
     currency_data = get_raw_data(request_url)
     # Ditch all the other stuff, and just read the currency slugs and names
-    for item in currency_data:
-        all_currencies[item["slug"]] = item["name"]
+    for item in currency_data["data"]:
+        all_currencies[item["symbol"]] = item["slug"]
     # Return the new dictionary to populate UI
     return all_currencies
 
 
 def get_market_data(currency, start_date, end_date):
 
-    # Placeholder dictionary to populate with amazing data from API
-    historical_data = {}
+    # Placeholder list to populate with amazing data from API
+    historical_data = []
     # Create a beautiful query for the API call
     request_url = f"https://data.messari.io/api/v1/assets/" + currency + \
         "/metrics/price/time-series?start=" + start_date + \
@@ -33,11 +36,18 @@ def get_market_data(currency, start_date, end_date):
     raw_data = get_raw_data(request_url)
     # Ditch all the other stuff, and just read the values
     retrieved_data = raw_data["data"]["values"]
-    # Create the new dictionary with the time as key and closing price as value
+    # Create the new list with the time as key and closing price as value
     for item in retrieved_data:
-        historical_data[item[0]] = item[4]
+        historical_data.append(item[4])
+
     # Return the new dictionary for further calculations
-    return historical_data
+    np_array = np.array(historical_data)
+    my_dataframe = pd.DataFrame(np_array, columns=['close'])
+    my_dataframe['returns'] = 100 * np.log(my_dataframe['close']).diff()
+    my_dataframe = my_dataframe['returns'].dropna()
+    returns = my_dataframe
+
+    return returns
 
 
 def get_raw_data(url):
