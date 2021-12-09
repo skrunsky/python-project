@@ -25,6 +25,9 @@ st.set_page_config(
 
 # Sidebar configuration
 with st.sidebar:
+    col1, col2, col3 = st.columns([0.3, 1, 0.3])
+    col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
+    "\n"
 
     st.title("Filters")
     "\n"
@@ -56,8 +59,7 @@ with st.sidebar:
      
 
 # Header content for the webpage
-col1, col2, col3 = st.columns([1, 1, 1])
-col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
+st.title("Crypto Asset Forecasting")
 "\n"
 
 st.subheader("Forecasting one month returns on crypto asset time-series using stochastic volatility models")
