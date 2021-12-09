@@ -107,7 +107,6 @@ st.markdown("---")
 
 st.markdown(
     "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
-# Footer content for the webpage
-
+st.markdown("This site does not give financial advice, nor is it an investment advisor. It is just a tool to help you understand the volatility of crypto assets, and is meant for educational and demonstration purposes only.")
 st.markdown(
     "*Find the full source code [on GitHub](https://github.com/skrunsky/python-project).*")
