@@ -11,7 +11,7 @@ This project was developed and created by:
 
 As a project for the course Introduction to Programming at [Nova School of Business and Economics]("https://novasbe.pt/").
 
-## How to run 
+## How to run
 
 For local development, you can access the streamlit application by running:
 

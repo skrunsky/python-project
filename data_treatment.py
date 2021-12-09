@@ -9,6 +9,7 @@ from math import sqrt
 import pandas as pd
 import numpy as np
 import warnings
+from stqdm import stqdm
 
 # we want to not print any warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -77,7 +78,7 @@ class DataTreatment:
         sigma, mu, return_list = self.get_variables()
         monthly_return_list = []
 
-        for i in tqdm(range(self.n)):
+        for i in stqdm(range(self.n), desc="Running simulation... Please do not refresh the window"):
 
             # open the list to append all the values from one iteration
             states = []

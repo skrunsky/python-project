@@ -1,7 +1,6 @@
 import streamlit as st
 
 import datetime
-import time
 
 
 # own functions
@@ -39,7 +38,7 @@ with st.sidebar:
     selected_currency = st.selectbox("Select a cryptocurrency", currencies)
     "\n"
 
-    model = st.selectbox("Select a cryptocurrency", ['GARCH', 'ARCH', 'HARCH'])
+    model = st.selectbox("Select a model", ['GARCH', 'ARCH', 'HARCH'])
     # Defining the period interval
     today = datetime.date.today()
     last_month = today - datetime.timedelta(days=31)
@@ -70,46 +69,45 @@ st.subheader(
     "Forecasting one month returns on crypto asset time-series using stochastic volatility models")
 "\n"
 "\n"
-
-# Introduction to the product
-st.markdown("An approach to estimate volatilities on past data is used. To estimate the forecast probability density, a stochastic volatility model is chosen. A GARCH, ARCH or HARCH model to specify the equity index return process based can be used.")
-st.markdown(
-    "Below the annualized conditional **volatility** for the specified timeframe can be observed:")
-"\n"
-"\n"
-
 graph_creator = gc.GraphCreator(
     data_treatment, selected_currency, str(start_date), str(end_date))
 
-graph_creator.volatility_plot()
+col1, col2 = st.columns([1, 3])
 
-"\n"
-"\n"
-st.markdown("Based on the computed volatilities Engle and Rosenberg (2002) suggest an approach to estimate one month forecasted returns.")
-st.markdown(
-    f"Through a Monte Carlo simulation a number of returns ({n}) is simulated that yields a **return density function** as specified below.")
-st.markdown(
-    "The forecast becomes more accurate the more iterations the user specifies.")
-"\n"
-"\n"
+with col1:
 
-graph_creator.density_plot()
+    # Introduction to the product
+    st.markdown("An approach to estimate volatilities on past data is used. To estimate the forecast probability density, a stochastic volatility model is chosen. A GARCH, ARCH or HARCH model to specify the equity index return process based can be used.")
+    st.markdown(
+        "Below the annualized conditional **volatility** for the specified timeframe can be observed:")
 
-st.markdown(
-    f"The on average forecasted return of {selected_currency} over the next month is: ")
-# st.metric(label="Return", value=f"{mu} %")  # CORRECT THIS
-"\n"
-"\n"
-st.markdown("The average return out of the simulated sample resembles the on average most likely return for the next month. Using the density function the user can now get an understanding of the likelihood of the occurrence of a certain return.")
-"\n"
-"\n"
-"\n"
 
-st.balloons()
+with col2:
+    graph_creator.volatility_plot()
 
-# Footer content for the webpage
+st.markdown("---")
+
+col3, col4 = st.columns([3, 1])
+
+with col3:
+    graph_creator.density_plot()
+
+with col4:
+
+    graph_creator.show_forecasted_return()
+
+    st.markdown("Based on the computed volatilities Engle and Rosenberg (2002) suggest an approach to estimate one month forecasted returns.")
+    st.markdown(
+        f"Through a Monte Carlo simulation a number of returns ({n}) is simulated that yields a **return density function** as specified below.")
+    st.markdown(
+        "The forecast becomes more accurate the more iterations the user specifies.")
+    st.markdown("The average return out of the simulated sample resembles the on average most likely return for the next month. Using the density function the user can now get an understanding of the likelihood of the occurrence of a certain return.")
+
+st.markdown("---")
+
 st.markdown(
     "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
-"\n"
+# Footer content for the webpage
+
 st.markdown(
     "*Find the full source code [on GitHub](https://github.com/skrunsky/python-project).*")
