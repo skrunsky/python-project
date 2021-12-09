@@ -4,7 +4,6 @@ from sklearn.neighbors import KernelDensity
 from arch import arch_model
 import matplotlib.ticker as mtick
 import matplotlib.pyplot as plt
-from pandas_datareader import data as web
 from math import sqrt
 import pandas as pd
 import numpy as np
