@@ -14,12 +14,12 @@ currencies = dr.retrieve_currencies()
 
 #Page configuration
 st.set_page_config(
-    page_title="This is a cool app",
-    page_icon="💰",
+    page_title="Crypto Asset Forecasting",
+    page_icon="/Users/veramendes/Documents/GitHub/python-project/icon.png",
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About': "# GARCH MODEL. This is an *extremely* cool app!"
+        'About':"**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
     }
 )
 
@@ -49,18 +49,17 @@ with st.sidebar:
     n = st.slider('How many times do you want to run the model?', 10, 1000)
     st.caption(
         'Note: The more times you run the model, the more accurate the results are.')
-    "\n"
-
+    
     # Progress status
     with st.spinner('Loading...'):
         time.sleep(1)
-  
-    
-
+     
 
 # Header content for the webpage
-st.title("Crypto Asset Forecasting")
+col1, col2, col3 = st.columns([1, 1, 1])
+col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
 "\n"
+
 st.subheader("Forecasting one month returns on crypto asset time-series using stochastic volatility models")
 "\n"
 "\n"
@@ -79,6 +78,7 @@ dt.garch_volatility(
     result, selected_currency, str(start_date), str(end_date))
 "\n"
 "\n"
+
 st.markdown("Based on the computed volatilities Engle and Rosenberg (2002) suggest an approach to estimate one month forecasted returns.")
 st.markdown(f"Through a Monte Carlo simulation a number of returns ({n}) is simulated that yields a **return density function** as specified below.")
 st.markdown("The forecast becomes more accurate the more iterations the user specifies.")
@@ -90,7 +90,7 @@ monte_carlo = dt.monte_carlo_simulation(
 dt.density_plot(monte_carlo, n, selected_currency)
 
 st.markdown(f"The on average forecasted return of {selected_currency} over the next month is: ")
-st.metric(label="Return", value=f"{mu} %") #CORRECT THIS
+st.metric(label="Return", value=f"{mu} %") #CORRECT THIS AND PUT UP
 "\n"
 "\n"
 st.markdown("The average return out of the simulated sample resembles the on average most likely return for the next month. Using the density function the user can now get an understanding of the likelihood of the occurrence of a certain return.")
