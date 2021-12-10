@@ -72,7 +72,6 @@ st.subheader(
 
 # Defining columns to use for the layout
 col1, col2 = st.columns([1, 3])
-col3, col4 = st.columns([3, 1])
 
 with col1:
     graph_creator.show_forecasted_return()
@@ -88,6 +87,8 @@ with col2:
     graph_creator.density_plot()
 
 st.markdown("---")
+
+col3, col4 = st.columns([3, 1])
 
 with col3:
     graph_creator.volatility_plot()
