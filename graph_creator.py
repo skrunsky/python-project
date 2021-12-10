@@ -22,11 +22,10 @@ class GraphCreator:
         self.dataframe, self.avg_return = self.data_treatment.monte_carlo_simulation()
 
     def volatility_plot(self):
-
         vol = sqrt(250) * self.volatility_results.conditional_volatility
-
         fig, ax = plt.subplots(figsize=(15, 5))
-        # Plot GJR-GARCH estimated volatility | only cosmetics for plit
+
+        # Plot estimated volatility, setting colors, labels and title
         ax.plot(vol, color='#00B7C2',
                 label=self.data_treatment.model + ' Volatility')
         ax.yaxis.set_major_formatter(mtick.PercentFormatter())
@@ -48,6 +47,7 @@ class GraphCreator:
         ax.spines['right'].set_color("#1B262C")
         ax.spines['top'].set_color("#1B262C")
 
+        # Show the plot using Streamlit
         st.pyplot(fig)
 
     def density_plot(self):
@@ -110,7 +110,9 @@ class GraphCreator:
         ax[1].spines['right'].set_color("#1B262C")
         ax[1].spines['top'].set_color("#1B262C")
 
+        # Show the plot using Streamlit
         st.pyplot(fig)
 
     def show_forecasted_return(self):
+        # Show the forecasted average return using Streamlit
         st.metric("Forecasted Average Return", self.avg_return)

@@ -8,11 +8,13 @@ import pandas as pd
 API_KEY = st.secrets["API_KEY"]
 HEADER_VAL = "x-messari-api-key"
 
+# DataRetriever class to fetch data using the Messari API
+
 
 class DataRetriever:
 
     def __init__(self, api_key):
-        self.API_KEY = api_key
+        self.API_KEY = api_key  # Initialize using the given API key
 
     def retrieve_currencies(self):
         # Placeholder dictionary to populate with data
@@ -29,7 +31,6 @@ class DataRetriever:
         return all_currencies
 
     def get_market_data(self, currency, start_date, end_date):
-
         # Placeholder list to populate with amazing data from API
         historical_data = []
         # Create a beautiful query for the API call
@@ -43,7 +44,6 @@ class DataRetriever:
         # Create the new list with the time as key and closing price as value
         for item in retrieved_data:
             historical_data.append(item[4])
-
         # Conversions of data
         np_array = np.array(historical_data)  # Convert to numpy array
         # Convert to pandas dataframe
@@ -51,8 +51,7 @@ class DataRetriever:
         my_dataframe['returns'] = 100 * \
             np.log(my_dataframe['close']).diff()  # Calculate returns
         my_dataframe = my_dataframe['returns'].dropna()  # Drop NaN values
-        returns = my_dataframe
-
+        returns = my_dataframe  # Change the naming of the dataframe
         # Return the dataframe for further calculations
         return returns
 
@@ -65,4 +64,5 @@ class DataRetriever:
         raw_data = urllib.request.urlopen(my_request).read()
         # Let Python turn the json into something useful
         parsed_data = json.loads(raw_data)
+        # Return the parsed data
         return parsed_data

@@ -10,7 +10,7 @@ import numpy as np
 import warnings
 from stqdm import stqdm
 
-# we want to not print any warnings
+# we want to not print any warnings to the console
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 
@@ -35,6 +35,7 @@ class DataTreatment:
 
     def create_model(self):
 
+        # Depending on the model type, crate a unique model
         if self.model == 'GARCH':
             model = arch_model(self.returns, p=1, o=0, q=1,
                                vol='GARCH', dist="t", rescale=False)
@@ -44,36 +45,46 @@ class DataTreatment:
             model = arch_model(self.returns, mean='AR', lags=2,
                                vol='HARCH', p=[1, 5, 22])
 
+        # Return the newly created model
         return model
 
     def find_volatility(self):
 
+        # Retrieve the saved model
         model = self.create_model()
 
+        # Fit the model
         volatility_result = model.fit(update_freq=1, disp='off')
 
+        # Return the fitted model
         return volatility_result
 
     def create_forecast(self):
 
+        # Take the given volatility and create a forecast
         volatility_result = self.find_volatility()
         forecast = volatility_result.forecast(horizon=1)
 
+        # Return the forecast
         return forecast
 
     def set_variables(self):
 
+        # Retrieve the forecast
         forecast = self.create_forecast()
 
+        # Set the needed variables for running the simulation
         self.sigma = sqrt(forecast.variance["h.1"].iloc[-1] / 10000)
         self.mu = forecast.mean["h.1"].iloc[-1]
         self.return_list = self.returns.to_numpy()
 
     def get_variables(self):
+        # Retrieve variables for the simulation
         return self.sigma, self.mu, self.return_list
 
     def monte_carlo_simulation(self):
 
+        # Retrieve the needed variables
         sigma, mu, return_list = self.get_variables()
         monthly_return_list = []
 
@@ -116,4 +127,5 @@ class DataTreatment:
             monte_carlo_dataframe)]
         average_percent = str(round(100 * np.mean(monte_carlo_dataframe), 2))
 
+        # Return the results of the Monte Carlo simulation and the average forecasted return
         return monte_carlo_dataframe, average_percent

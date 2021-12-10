@@ -13,6 +13,7 @@ As a project for the course Introduction to Programming at [Nova School of Busin
 
 ## How to run
 
+First provide an API key to the Messari API in a .streamlit/secrets.toml file.
 For local development, you can access the streamlit application by running:
 
 `streamlit run streamlit.py`
