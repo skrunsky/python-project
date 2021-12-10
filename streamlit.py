@@ -20,11 +20,11 @@ currencies = data_retriever.retrieve_currencies()
 # Page configuration
 st.set_page_config(
     page_title="Crypto Asset Forecasting",
-    page_icon="/Users/veramendes/Documents/GitHub/python-project/icon.png",
+    page_icon="icon.png",
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About': "**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
+        'About': "Based on Engle and Rosenberg (2002) an approach to estimate one month forecasted returns based on volatilities is applied on Cryptocurrencies. Usually, models that exhibit time-varying volatility and volatility clustering are employed in modelling return time series. To estimate the forecast probability density, a stochastic volatility model, in this case a GARCH, ARCH or HARCH model to specify the equity index return process, can be chosen. *This web app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy`, `stqdm`, `scikit-learn` *&* `arch` *libraries.*"
     }
 )
 
@@ -36,7 +36,7 @@ with st.sidebar:
 
     st.title("Options")
 
-    # Cryptocurrency selection
+    # Cryptocurrency and model selection
     selected_currency = st.selectbox("Select a cryptocurrency", currencies)
     model = st.selectbox("Select a model", ['GARCH', 'ARCH', 'HARCH'])
     # Defining the period interval
@@ -76,12 +76,9 @@ col1, col2 = st.columns([1, 3])
 with col1:
     graph_creator.show_forecasted_return()
 
-    st.markdown("Based on the computed volatilities Engle and Rosenberg (2002) suggest an approach to estimate one month forecasted returns.")
-    st.markdown(
-        f"Through a Monte Carlo simulation a number of returns ({n}) is simulated that yields a **return density function** as specified below.")
-    st.markdown(
-        "The forecast becomes more accurate the more iterations the user specifies.")
-    st.markdown("The average return out of the simulated sample resembles the on average most likely return for the next month. Using the density function the user can now get an understanding of the likelihood of the occurrence of a certain return.")
+    st.markdown(f"Here, the distribution of possible returns, as **histogram** and as **smoothed density function**, can be observed. Applying a Monte Carlo simulation, {n} possible one-month returns are simulated and plotted.")
+    st.markdown("A left-skewed probability distribution would indicate a higher probability for negative one-month expected returns, while a right-skewed distribution would indicate more positive return expectations over the next month.")
+    st.markdown("The average of all simulated returns corresponds to the on average most likely to be expected return over the next month.")
 
 with col2:
     graph_creator.density_plot()
@@ -94,15 +91,14 @@ with col3:
     graph_creator.volatility_plot()
 
 with col4:
-    st.markdown("An approach to estimate volatilities on past data is used. To estimate the forecast probability density, a stochastic volatility model is chosen. A GARCH, ARCH or HARCH model to specify the equity index return process based can be used.")
-    st.markdown(
-        "Below the annualized conditional **volatility** for the specified timeframe can be observed:")
-
+    st.markdown(f"This figure shows the {selected_currency} annualized conditional **volatility** computed with the {model} model. The period from {start_date} to {end_date} is used to forecast volatilities of the next period.") 
+    st.markdown("Typically, very high levels of volatility correspond to corrections in the underlying asset. Based on the assumption of volatility clustering, all else held equal, more recent volatilities have a stronger influence on predicted future volatility levels.")
 
 st.markdown("---")
 
 st.markdown(
     "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
 st.markdown("This site does not give financial advice, nor is it an investment advisor. It is just a tool to help you understand the volatility of crypto assets, and is meant for educational and demonstration purposes only.")
+st.markdown("For further insights check the **About** item in the menu.")
 st.markdown(
     "*Find the full source code [on GitHub](https://github.com/skrunsky/python-project).*")
