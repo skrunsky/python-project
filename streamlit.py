@@ -24,17 +24,17 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About':"**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
+        'About': "**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
     }
 )
 
 # Sidebar configuration
 with st.sidebar:
     col1, col2, col3 = st.columns([0.3, 1, 0.3])
-    col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
+    col2.image("logo.png", use_column_width=True)
     "\n"
 
-    st.title("Filters")
+    st.title("Options")
 
     # Cryptocurrency selection
     selected_currency = st.selectbox("Select a cryptocurrency", currencies)
@@ -72,7 +72,6 @@ st.subheader(
 
 # Defining columns to use for the layout
 col1, col2 = st.columns([1, 3])
-col3, col4 = st.columns([3, 1])
 
 with col1:
     graph_creator.show_forecasted_return()
@@ -87,7 +86,9 @@ with col1:
 with col2:
     graph_creator.density_plot()
 
-st.markdown("---")  # Divider
+st.markdown("---")
+
+col3, col4 = st.columns([3, 1])
 
 with col3:
     graph_creator.volatility_plot()
@@ -98,7 +99,7 @@ with col4:
         "Below the annualized conditional **volatility** for the specified timeframe can be observed:")
 
 
-st.markdown("---")  # Divider
+st.markdown("---")
 
 st.markdown(
     "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
