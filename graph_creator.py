@@ -117,4 +117,4 @@ class GraphCreator:
         # Show the forecasted average return using Streamlit
         avg_return = str(self.avg_return) + "%"
 
-        st.metric("Forecasted Average Return", avg_return,)
+        st.metric("Forecasted Average One-Month Return", avg_return,)

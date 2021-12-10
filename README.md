@@ -1,4 +1,4 @@
-# Python - Cryptocurrency Assets Forecasting
+# Python - Cryptocurrency Assets Return Forecasting
 
 This project aims to forecast one month returns on crypto asset time-series using three stochastic volatility models. Data is pulled from the Messari API, and the user is given options for time-series of data to use and the number of simulations to run. The final project is deployed via Streamlit.
 [A demonstration deployment can be found here]("https://share.streamlit.io/skrunsky/python-project/main/streamlit.py").

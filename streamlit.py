@@ -19,7 +19,7 @@ currencies = data_retriever.retrieve_currencies()
 
 # Page configuration
 st.set_page_config(
-    page_title="Crypto Asset Forecasting",
+    page_title="Crypto Asset Return Forecasting",
     page_icon="icon.png",
     layout="wide",
     initial_sidebar_state="auto",
@@ -66,7 +66,7 @@ graph_creator = gc.GraphCreator(
     data_treatment, selected_currency, str(start_date), str(end_date))
 
 # Header content for the webpage
-st.header("Crypto Asset Forecasting")
+st.header("Crypto Asset Return Forecasting")
 st.subheader(
     "Forecasting one month returns on crypto asset time-series using stochastic volatility models")
 
@@ -76,7 +76,8 @@ col1, col2 = st.columns([1, 3])
 with col1:
     graph_creator.show_forecasted_return()
 
-    st.markdown(f"Here, the distribution of possible returns, as **histogram** and as **smoothed density function**, can be observed. Applying a Monte Carlo simulation, {n} possible one-month returns are simulated and plotted.")
+    st.markdown(
+        f"Here, the distribution of possible returns, as **histogram** and as **smoothed density function**, can be observed. Applying a Monte Carlo simulation, {n} possible one-month returns are simulated and plotted.")
     st.markdown("A left-skewed probability distribution would indicate a higher probability for negative one-month expected returns, while a right-skewed distribution would indicate more positive return expectations over the next month.")
     st.markdown("The average of all simulated returns corresponds to the on average most likely to be expected return over the next month.")
 
@@ -91,14 +92,15 @@ with col3:
     graph_creator.volatility_plot()
 
 with col4:
-    st.markdown(f"This figure shows the {selected_currency} annualized conditional **volatility** computed with the {model} model. The period from {start_date} to {end_date} is used to forecast volatilities of the next period.") 
+    st.markdown(
+        f"This figure shows the {selected_currency} annualized conditional **volatility** computed with the {model} model. The period from {start_date} to {end_date} is used to forecast volatilities of the next period.")
     st.markdown("Typically, very high levels of volatility correspond to corrections in the underlying asset. Based on the assumption of volatility clustering, all else held equal, more recent volatilities have a stronger influence on predicted future volatility levels.")
 
 st.markdown("---")
 
 st.markdown(
-    "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
-st.markdown("This site does not give financial advice, nor is it an investment advisor. It is just a tool to help you understand the volatility of crypto assets, and is meant for educational and demonstration purposes only.")
-st.markdown("For further insights check the **About** item in the menu.")
+    "*Created by Enrique Ferrari, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
+st.markdown("*This site does not give financial advice, nor is it an investment advisor. It is just a tool to help you understand the volatility of crypto assets, and is meant for educational and demonstration purposes only.*")
+st.markdown("*For further insights check the **About** item in the menu.*")
 st.markdown(
     "*Find the full source code [on GitHub](https://github.com/skrunsky/python-project).*")
