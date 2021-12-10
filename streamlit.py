@@ -34,7 +34,7 @@ with st.sidebar:
     col2.image("logo.png", use_column_width=True)
     "\n"
 
-    st.title("Filters")
+    st.title("Options")
 
     # Cryptocurrency selection
     selected_currency = st.selectbox("Select a cryptocurrency", currencies)
@@ -87,7 +87,7 @@ with col1:
 with col2:
     graph_creator.density_plot()
 
-st.markdown("---")  # Divider
+st.markdown("---")
 
 with col3:
     graph_creator.volatility_plot()
@@ -98,7 +98,7 @@ with col4:
         "Below the annualized conditional **volatility** for the specified timeframe can be observed:")
 
 
-st.markdown("---")  # Divider
+st.markdown("---")
 
 st.markdown(
     "*Created by Enrique Fabio Ferrari-Pedruzzi, Gianluca Pecoraro, Sigurd Koldste & Vera Mendes as part of an Introduction to Programming project at [Nova School of Business and Economics](https://novasbe.pt/).*")
