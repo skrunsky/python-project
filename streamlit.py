@@ -24,7 +24,7 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About': "Based on Engle and Rosenberg (2002) an approach to estimate one month forecasted returns based on volatilities is applied on Cryptocurrencies. Usually, models that exhibit time-varying volatility and volatility clustering are employed in modelling return time series. To estimate the forecast probability density, a stochastic volatility model, in this case a GARCH, ARCH or HARCH model to specify the equity index return process, can be chosen. *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
+        'About': "Based on Engle and Rosenberg (2002) an approach to estimate one month forecasted returns based on volatilities is applied on Cryptocurrencies. Usually, models that exhibit time-varying volatility and volatility clustering are employed in modelling return time series. To estimate the forecast probability density, a stochastic volatility model, in this case a GARCH, ARCH or HARCH model to specify the equity index return process, can be chosen. *This web app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy`, `stqdm`, `scikit-learn` *&* `arch` *libraries.*"
     }
 )
 
