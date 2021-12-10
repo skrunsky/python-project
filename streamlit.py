@@ -19,17 +19,20 @@ currencies = data_retriever.retrieve_currencies()
 
 # Page configuration
 st.set_page_config(
-    page_title="This is a cool app",
-    page_icon="💰",
+    page_title="Crypto Asset Forecasting",
+    page_icon="/Users/veramendes/Documents/GitHub/python-project/icon.png",
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About': "# GARCH MODEL. This is an *extremely* cool app!"
+        'About':"**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
     }
 )
 
 # Sidebar configuration
 with st.sidebar:
+    col1, col2, col3 = st.columns([0.3, 1, 0.3])
+    col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
+    "\n"
 
     st.title("Filters")
 
@@ -61,6 +64,7 @@ data_treatment.set_variables()
 # Initialize the GraphCreator object
 graph_creator = gc.GraphCreator(
     data_treatment, selected_currency, str(start_date), str(end_date))
+
 # Header content for the webpage
 st.header("Crypto Asset Forecasting")
 st.subheader(
