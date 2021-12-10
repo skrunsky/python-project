@@ -24,14 +24,14 @@ st.set_page_config(
     layout="wide",
     initial_sidebar_state="auto",
     menu_items={
-        'About':"**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
+        'About': "**GARCH MODEL:** *This app was built using* `streamlit`, `pandas`, `matplotlib`, `numpy` *&* `arch` *libraries.*"
     }
 )
 
 # Sidebar configuration
 with st.sidebar:
     col1, col2, col3 = st.columns([0.3, 1, 0.3])
-    col2.image("/Users/veramendes/Documents/GitHub/python-project/logo.png", use_column_width=True)
+    col2.image("logo.png", use_column_width=True)
     "\n"
 
     st.title("Filters")
